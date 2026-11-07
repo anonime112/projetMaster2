@@ -1,0 +1,62 @@
+---
+title: "analyse"
+author: "koffiROMARIC"
+date: "2026-10-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r cars}
+
+# ============================================================
+# ANALYSE FINANCIERE BANCAIRE - BILANS 2021-2023
+# Tableaux, ratios, courbes, barres et diagrammes circulaires
+# ============================================================
+
+# 1. Packages -------------------------------------------------
+
+packages <- c(
+  "readxl", "dplyr", "tidyr", "stringr",
+  "ggplot2", "scales", "openxlsx", "janitor", "purrr"
+)
+
+manquants <- packages[
+  !vapply(packages, requireNamespace, logical(1), quietly = TRUE)
+]
+
+if (length(manquants) > 0) {
+  install.packages(manquants)
+}
+
+invisible(lapply(packages, library, character.only = TRUE))
+
+# 2. Choisir le fichier Excel -------------------------------
+
+fichier <- file.choose()
+
+feuilles <- readxl::excel_sheets(fichier)
+
+cat("\nFEUILLES DISPONIBLES :\n")
+print(feuilles)
+
+banque <- readline(
+  "\nSaisis le nom exact de la feuille de la banque à analyser : "
+)
+
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
